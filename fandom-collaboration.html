@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Meet collaborators and fellow fans from Trolls, Elemental, and Angry Birds.">
+  <title>Fandom Collaboration - PewJay Official</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body class="page page-subpage page-fandom-collaboration" data-page="fandom-collaboration">
+  <div data-site-header></div>
+  <div class="page-transition is-visible" id="pageTransition" aria-hidden="true"><div class="transition-mark"><span></span><span></span><span></span></div><img src="assets/logo-name.png" alt=""><p>LOADING PEWJAY</p></div>
+
+  <main class="subpage-main fandom-collab-main">
+    <section class="fandom-collab-section" aria-labelledby="fandomCollabHeading">
+      <header class="fandom-collab-intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> FANDOM MEETS FRIENDSHIP</p>
+        <h1 id="fandomCollabHeading">Fandom <span>collaboration</span></h1>
+        <p>Meet the people sharing their love for these worlds with the PewJay community.</p>
+      </header>
+      <div class="fandom-collab-grid" data-fandom-collab-list></div>
+    </section>
+  </main>
+
+  <template id="fandomCollabCardTemplate">
+    <article class="fandom-collab-card">
+      <img class="fandom-collab-card__background" data-fandom-background src="" alt="" loading="lazy">
+      <div class="fandom-collab-card__shade" aria-hidden="true"></div>
+      <span class="fandom-collab-card__fandom" data-fandom-name></span>
+      <div class="fandom-collab-card__logo"><img data-fandom-logo src="" alt="" loading="lazy"></div>
+      <div class="fandom-collab-card__profile">
+        <div class="fandom-collab-card__identity"><strong data-fandom-user-name></strong><span data-fandom-username></span></div>
+        <div class="fandom-collab-card__profile-controls" data-fandom-profile-controls hidden aria-label="Choose collaborator">
+          <button type="button" data-card-user-step="-1" aria-label="Previous collaborator"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+          <span data-card-user-index>01 / 01</span>
+          <button type="button" data-card-user-step="1" aria-label="Next collaborator"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="fandom-avatar-cluster" data-fandom-avatar-list aria-label="Collaborator profiles"></div>
+      <button class="button button--glass fandom-collab-card__button" type="button" data-open-fandom-profile>
+        <span>View profile</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+      </button>
+      <span class="fandom-collab-card__index" data-fandom-index aria-hidden="true"></span>
+    </article>
+  </template>
+
+  <dialog class="fandom-profile-dialog" id="fandomProfileDialog" aria-labelledby="fandomProfileName">
+    <div class="fandom-profile-dialog__surface">
+      <img class="fandom-profile-dialog__background" data-profile-background src="" alt="">
+      <div class="fandom-profile-dialog__shade" aria-hidden="true"></div>
+      <button class="fandom-profile-dialog__close" type="button" data-close-fandom-profile aria-label="Close profile"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span></button>
+      <div class="fandom-profile-dialog__grid">
+        <section class="fandom-profile-dialog__identity">
+          <p class="eyebrow"><span class="eyebrow-line"></span><span data-profile-fandom></span></p>
+          <h2 id="fandomProfileName" data-profile-name></h2>
+          <p class="fandom-profile-dialog__username" data-profile-username></p>
+          <div class="fandom-profile-dialog__socials" data-profile-social-links role="group" aria-label="Social profiles" hidden></div>
+          <p class="fandom-profile-dialog__social-note" data-profile-social-note>Social profile link can be added in the JavaScript profile settings.</p>
+          <div class="fandom-profile-dialog__user-controls" data-dialog-profile-controls hidden aria-label="Choose collaborator">
+            <button type="button" data-dialog-user-step="-1" aria-label="Previous collaborator"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+            <span data-dialog-user-index>01 / 01</span>
+            <button type="button" data-dialog-user-step="1" aria-label="Next collaborator"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+        </section>
+        <div class="fandom-avatar fandom-avatar--fullscreen" aria-label="Collaborator profile photo">
+          <img data-profile-photo-fullscreen src="" alt="" hidden>
+          <span data-profile-avatar-placeholder-fullscreen><i class="fa-regular fa-user" aria-hidden="true"></i></span>
+        </div>
+        <section class="fandom-profile-dialog__bio">
+          <p class="fandom-profile-dialog__bio-label">ABOUT THIS FAN</p>
+          <p data-profile-paragraph></p>
+        </section>
+      </div>
+    </div>
+  </dialog>
+
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><span>Top</span></button>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Upcoming PewJay events, livestreams, and creative moments.">
+  <title>Events - PewJay Official</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body class="page page-subpage" data-page="events">
+  <div data-site-header></div>
+  <div class="page-transition is-visible" id="pageTransition" aria-hidden="true"><div class="transition-mark"><span></span><span></span><span></span></div><img src="assets/logo-name.png" alt=""><p>LOADING PEWJAY</p></div>
+
+  <main class="subpage-main events-main">
+    <section class="page-hero page-hero--events" aria-labelledby="eventsHeading">
+      <div class="page-hero__art" aria-hidden="true"><img class="event-hero__photo" src="assets/event/bg.jpg" alt="Event background"></div>
+      <div class="page-hero__copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A LITTLE SOMETHING TO LOOK FORWARD TO</p>
+        <h1 id="eventsHeading">UPCOMING EVENTS</h1>
+        <p>Discover the latest PewJay Official events, fandom releases, creative projects, and upcoming moments.</p>
+        <a class="button button--primary" href="#upcoming-events">See the countdown <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+      </div>
+      <span class="event-hero__index" aria-hidden="true">PEWJAY OFFICIAL <i></i> CAVITE, PH</span>
+    </section>
+
+    <section class="subpage-content event-countdown-section" id="upcoming-events" aria-labelledby="countdownHeading">
+      <div class="section-heading">
+        <p class="eyebrow">SAVE A LITTLE SPACE</p>
+        <h2 id="countdownHeading">The next <span>moment</span></h2>
+        <p>Open the countdown card to see it take over the screen.</p>
+      </div>
+      <div class="event-countdown-list" data-event-list></div>
+      <noscript><p class="event-noscript">Turn on JavaScript to see the event countdown.</p></noscript>
+    </section>
+
+    <template id="eventCardTemplate">
+      <article class="event-countdown-card">
+        <img class="event-countdown-card__image" data-event-image src="" alt="">
+        <div class="event-countdown-card__shade" aria-hidden="true"></div>
+        <div class="event-countdown-card__layout">
+          <div class="event-countdown-card__details">
+            <p class="event-countdown-card__eyebrow" data-event-eyebrow></p>
+            <h3 data-event-title></h3>
+            <p class="event-countdown-card__description" data-event-description></p>
+            <div class="event-release"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-card-release data-event-release></span></div>
+            <button class="button button--glass event-expand-button" type="button" data-open-event>
+              <span>Open full screen</span><i class="fa-solid fa-expand" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="event-countdown-card__timer">
+            <p class="event-countdown-card__timer-label" data-event-countdown-label></p>
+            <div class="countdown-grid" data-event-timer>
+              <div class="countdown-unit"><strong data-countdown-value="days">TBA</strong><span>Days</span></div>
+              <div class="countdown-unit"><strong data-countdown-value="hours">TBA</strong><span>Hours</span></div>
+              <div class="countdown-unit"><strong data-countdown-value="minutes">TBA</strong><span>Minutes</span></div>
+              <div class="countdown-unit"><strong data-countdown-value="seconds">TBA</strong><span>Seconds</span></div>
+            </div>
+            <p class="countdown-status" data-card-status data-event-status></p>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <dialog class="event-fullscreen" id="eventFullscreen" aria-labelledby="eventFullscreenTitle">
+      <div class="event-fullscreen__surface">
+        <img class="event-fullscreen__image" data-fullscreen-image src="" alt="">
+        <div class="event-fullscreen__shade" aria-hidden="true"></div>
+        <button class="event-fullscreen__close" type="button" data-close-event aria-label="Close full screen countdown"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span></button>
+        <div class="event-fullscreen__bottom">
+          <section class="event-fullscreen__details">
+            <p class="eyebrow"><span class="eyebrow-line"></span><span data-fullscreen-eyebrow></span></p>
+            <h2 id="eventFullscreenTitle" data-fullscreen-title></h2>
+            <p class="event-fullscreen__description" data-fullscreen-description></p>
+            <div class="event-release"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-fullscreen-release data-event-release></span></div>
+            <a class="text-link" data-fullscreen-link href="social.html">Follow for updates <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </section>
+          <section class="event-fullscreen__timer" aria-label="Event countdown">
+            <p class="event-countdown-card__timer-label" data-fullscreen-countdown-label></p>
+            <div class="countdown-grid" data-fullscreen-timer data-event-timer>
+              <div class="countdown-unit"><strong data-countdown-value="days">TBA</strong><span>Days</span></div>
+              <div class="countdown-unit"><strong data-countdown-value="hours">TBA</strong><span>Hours</span></div>
+              <div class="countdown-unit"><strong data-countdown-value="minutes">TBA</strong><span>Minutes</span></div>
+              <div class="countdown-unit"><strong data-countdown-value="seconds">TBA</strong><span>Seconds</span></div>
+            </div>
+            <p class="countdown-status" data-fullscreen-status data-event-status></p>
+          </section>
+        </div>
+      </div>
+    </dialog>
+
+    <section class="ask-section page-section" id="event-contact">
+      <div class="ask-orbit" aria-hidden="true"></div>
+      <div class="ask-copy">
+        <p class="eyebrow">GOT A QUESTION?</p>
+        <h2>Let's talk<br><span>about it.</span></h2>
+        <p>Have an event idea or want to get in touch? Send PewJay a note.</p>
+        <a class="ask-email" href="mailto:justinjayhernando900@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> justinjayhernando900@gmail.com</a>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <label for="contactEmail">Your email</label>
+        <input id="contactEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <label for="contactMessage">Your message</label>
+        <textarea id="contactMessage" name="message" rows="4" placeholder="Write a little note..." required></textarea>
+        <button class="button button--primary" type="submit">Send your note <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+        <p class="form-note" data-form-note>Opens your email app to send your message.</p>
+      </form>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><span>Top</span></button>
+</body>
+</html>

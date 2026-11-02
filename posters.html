@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="New illustrations and the latest PewJay posters.">
+  <title>Posters - PewJay Official</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body class="page page-subpage" data-page="posters">
+  <div data-site-header></div>
+  <div class="page-transition is-visible" id="pageTransition" aria-hidden="true"><div class="transition-mark"><span></span><span></span><span></span></div><img src="assets/logo-name.png" alt=""><p>LOADING PEWJAY</p></div>
+
+  <main class="subpage-main posters-main">
+    <section class="poster-feature" data-poster-feature aria-labelledby="posterFeatureHeading">
+      <img class="poster-feature__image" data-poster-feature-image src="assets/posters/new-illustration/1.jpg" alt="New PewJay illustration">
+      <div class="poster-feature__shade" aria-hidden="true"></div>
+      <div class="poster-feature__top">
+        <span class="poster-feature__badge" data-poster-feature-badge>NEW ILLUSTRATION</span>
+        <a class="button button--glass poster-feature__link" data-poster-feature-link href="https://youtube.com/@PewJay_Art" target="_blank" rel="noopener noreferrer"><span data-poster-link-label>TIME LAPSE</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+      </div>
+      <div class="poster-feature__copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> FRESH FROM THE PEWJAY STUDIO</p>
+        <h1 id="posterFeatureHeading" data-poster-feature-heading>A little color, a lot of heart</h1>
+        <p class="poster-feature__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-poster-feature-release>DATE TO BE ANNOUNCED</span></p>
+        <p class="poster-feature__paragraph" data-poster-feature-paragraph>A fresh illustration from the PewJay world, filled with bright characters and playful details.</p>
+      </div>
+      <span class="poster-feature__index" aria-hidden="true">FEATURED ARTWORK <i></i> PEWJAY OFFICIAL</span>
+    </section>
+
+    <section class="subpage-content poster-latest-section" aria-labelledby="latestPostersHeading">
+      <div class="section-heading">
+        <p class="eyebrow">THE LATEST FROM THE CANVAS</p>
+        <h2 id="latestPostersHeading">Latest <span>posters</span></h2>
+        <p>Three recent pieces from the PewJay poster wall.</p>
+      </div>
+      <div class="poster-latest-list" data-poster-latest-list></div>
+    </section>
+
+    <template id="posterLatestTemplate">
+      <article class="poster-latest-card">
+        <img class="poster-latest-card__image" data-poster-latest-image src="" alt="" loading="lazy">
+        <div class="poster-latest-card__shade" aria-hidden="true"></div>
+        <div class="poster-latest-card__copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> PEWJAY POSTER</p>
+          <h3 data-poster-latest-heading></h3>
+          <p class="poster-latest-card__date"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-poster-latest-release></span></p>
+          <p class="poster-latest-card__paragraph" data-poster-latest-paragraph></p>
+          <a class="text-link" data-poster-latest-link href="assets/posters/latest/1.jpg" target="_blank" rel="noopener noreferrer"><span data-poster-link-label>VIEW POSTER</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+        </div>
+        <span class="poster-latest-card__number" aria-hidden="true"></span>
+      </article>
+    </template>
+
+    <section class="ask-section page-section" id="poster-contact">
+      <div class="ask-orbit" aria-hidden="true"></div>
+      <div class="ask-copy">
+        <p class="eyebrow">LET'S MAKE SOMETHING GOOD</p>
+        <h2>Have a little<br><span>something to say?</span></h2>
+        <p>Questions, ideas, or just want to say hello? Send PewJay a note.</p>
+        <a class="ask-email" href="mailto:justinjayhernando900@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> justinjayhernando900@gmail.com</a>
+      </div>
+      <form class="contact-form" id="contactForm">
+        <label for="contactEmail">Your email</label>
+        <input id="contactEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <label for="contactMessage">Your message</label>
+        <textarea id="contactMessage" name="message" rows="4" placeholder="Write a little note..." required></textarea>
+        <button class="button button--primary" type="submit">Send your note <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+        <p class="form-note" data-form-note>Opens your email app to send your message.</p>
+      </form>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><span>Top</span></button>
+</body>
+</html>

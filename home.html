@@ -1,0 +1,111 @@
+ <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Welcome to PewJay Official — digital art, sketching, animation, livestreams, and a little joy.">
+  <title>Home — PewJay Official</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body class="page page-home">
+  <div data-site-header></div>
+  <div class="page-transition is-visible" id="pageTransition" aria-hidden="true"><div class="transition-mark"><span></span><span></span><span></span></div><img src="assets/logo-name.png" alt=""><p>LOADING PEWJAY</p></div>
+  <main class="home-page">
+    <div class="story-deck" data-story-deck aria-label="PewJay story">
+      <section class="story-panel story-hero is-active" data-story-panel aria-label="Welcome">
+        <div class="hero-backdrop" aria-hidden="true"></div><div class="hero-vignette" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-line"></span>FILIPINO ARTIST AND ANIMATOR</p>
+          <h1 class="hero-heading">We are <span class="rotating-word" data-rotating-word>DIGITAL</span></h1>
+          <p class="hero-subtitle">Welcome to <strong>PewJay Official</strong></p>
+          <button class="button button--primary" type="button" data-story-next>Explore the world <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></button>
+        </div>
+        <div class="hero-side-note"><span>01</span><span class="hero-side-note__line"></span><span>A CANVAS FOR EVERY KIND OF JOY</span></div>
+        <div class="story-hint"><span>SCROLL OR SWIPE TO EXPLORE</span><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+      </section>
+
+      <section class="story-panel about-panel" data-story-panel aria-label="About PewJay" aria-hidden="true">
+        <div class="about-orbit about-orbit--one" aria-hidden="true"></div><div class="about-orbit about-orbit--two" aria-hidden="true"></div>
+        <div class="about-layout">
+          <div class="about-number">01 <span>—</span> 04</div>
+          <div class="about-copy">
+            <p class="eyebrow">A CREATIVE SPACE FOR EVERYONE</p>
+            <h2>WHAT IS <span>PEWJAY?</span></h2>
+            <p>PewJay is a Filipino creative project focused on digital arts, sketching, animation, editing, and multimedia entertainment. Since 2022, PewJay has continued creating artistic content, original ideas, and creative experiences inspired by the creativity, music, friendship, and storytelling themes from Trolls and Elemental.</p>
+            <div class="about-tags"><span><i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Made by hand</span><span><i class="fa-solid fa-heart" aria-hidden="true"></i> Shared with heart</span></div>
+            <button class="text-link" type="button" data-story-next>See what we make <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="about-art" aria-hidden="true">
+            <img src="assets/home/animation/1.jpg" alt="" class="about-art__main">
+            <img src="assets/home/sketching/1.jpg" alt="" class="about-art__small">
+            <span class="art-sticker">DRAW<br>YOUR<br>WORLD</span>
+          </div>
+        </div>
+        <div class="story-hint"><span>SCROLL OR SWIPE TO EXPLORE</span><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+      </section>
+
+      <section class="story-panel content-panel" data-story-panel aria-label="PewJay content" aria-hidden="true">
+        <div class="content-heading"><p class="eyebrow">WHAT WE CREATE</p><h2>One world.<br><span>Many ways to play.</span></h2></div>
+        <div class="content-showcase">
+          <div class="content-tabs" role="tablist" aria-label="Explore PewJay content">
+            <button class="content-tab is-selected" id="tab-digital-art" type="button" role="tab" aria-controls="contentPanel" aria-selected="true" data-content-tab="digital-art"><span>01</span> Digital art</button>
+            <button class="content-tab" id="tab-sketching" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="sketching"><span>02</span> Sketching</button>
+            <button class="content-tab" id="tab-animation" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="animation"><span>03</span> Animation</button>
+            <button class="content-tab" id="tab-livestream" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="livestream"><span>04</span> Livestream</button>
+            <button class="content-tab" id="tab-world-tour" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="world-tour"><span>05</span> World tour</button>
+          </div>
+          <div class="content-description" id="contentPanel" role="tabpanel" aria-labelledby="tab-digital-art" aria-live="polite" tabindex="0">
+            <p class="content-description__label" data-content-label>THE ARTWORK</p>
+            <h3 data-content-title>Digital art</h3>
+            <p data-content-copy>Digital Art is where creativity and imagination come to life through colorful illustrations and fan-inspired artwork. Created using ibisPaint, each piece reflects passion, originality, and artistic expression. Explore PewJay's digital creations inspired by favorite movies, characters, and creative journeys.</p>
+            <a class="button button--outline" data-content-link href="posters.html">More timelapse <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
+          </div>
+          <div class="content-visual" data-content-visual>
+            <img src="assets/home/digital-art/1.jpg" alt="Colorful digital character artwork" data-content-image>
+            <div class="content-visual__shade"></div>
+            <div class="content-visual__caption"><span data-content-counter>01 / 15</span><span>PEWJAY CREATIVE ARCHIVE</span></div>
+            <div class="content-visual__controls"><button type="button" aria-label="Previous artwork" data-content-prev><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button><button type="button" aria-label="Next artwork" data-content-next><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+          </div>
+        </div>
+        <div class="story-hint"><span>SCROLL OR SWIPE TO EXPLORE</span><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+      </section>
+
+      <section class="story-panel owner-panel" data-story-panel aria-label="PewJay creator" aria-hidden="true">
+        <div class="owner-glow" aria-hidden="true"></div>
+        <div class="owner-layout">
+          <div class="owner-photo-wrap"><img src="assets/home/pewjay-owner.jpg" alt="Portrait of PewJay, creator and owner" class="owner-photo"><span class="owner-photo-tag"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> THE PERSON BEHIND THE ART</span></div>
+          <div class="owner-copy"><p class="eyebrow">MEET THE CREATOR</p><h2>PEWJAY<br><span>OWNER &amp; CREATOR</span></h2><p>PewJay was created by Justin Jay Hernando, a passionate artist, animator, editor, and multimedia creator inspired by animated storytelling and creative fandom communities. The project focuses on creativity, imagination, and entertainment through digital arts, animation, storytelling, and Technology skills, especially inspired by Trolls and Elemental.</p><a class="button button--primary" href="social.html">Find PewJay online <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="story-hint story-hint--end"><span>KEEP SCROLLING TO SAY HELLO</span><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+      </section>
+      <div class="story-pagination" aria-label="Story navigation"><button class="is-active" type="button" aria-label="Go to welcome" data-story-dot="0"></button><button type="button" aria-label="Go to about" data-story-dot="1"></button><button type="button" aria-label="Go to content" data-story-dot="2"></button><button type="button" aria-label="Go to creator" data-story-dot="3"></button></div>
+      <div class="story-progress"><span data-story-progress></span></div>
+    </div>
+
+    <section class="ask-section page-section" id="contact">
+      <div class="ask-orbit" aria-hidden="true"></div>
+      <div class="ask-copy"><p class="eyebrow">LET'S MAKE SOMETHING GOOD</p><h2>Have a little<br><span>something to say?</span></h2><p>Questions, ideas, or just want to say hello? Send PewJay a note.</p><a class="ask-email" href="mailto:justinjayhernando900@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i> justinjayhernando900@gmail.com</a></div>
+      <form class="contact-form" id="contactForm">
+        <label for="contactEmail">Your email</label><input id="contactEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        <label for="contactMessage">Your message</label><textarea id="contactMessage" name="message" rows="4" placeholder="Write a little note..." required></textarea>
+        <button class="button button--primary" type="submit">Send your note <i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button>
+        <p class="form-note" data-form-note>Opens your email app to send your message.</p>
+      </form>
+    </section>
+  </main>
+  <div data-site-footer></div>
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><span>Top</span></button>
+  <div class="cookie-notice" data-cookie-notice role="dialog" aria-label="Cookie preferences" aria-live="polite">
+    <button class="cookie-close" type="button" data-cookie-choice="essential" aria-label="Close cookie notice"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <span class="cookie-icon"><i class="fa-solid fa-cookie-bite" aria-hidden="true"></i></span><div class="cookie-copy"><strong>A little note about cookies</strong><p>This site stores your preference in your browser so it remembers your choice.</p></div>
+    <div class="cookie-actions"><button class="button button--primary button--small" type="button" data-cookie-choice="all">Sounds good</button><button class="cookie-essential" type="button" data-cookie-choice="essential">Only essential</button></div>
+  </div>
+</body>
+</html>

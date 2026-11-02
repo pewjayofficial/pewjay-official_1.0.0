@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Explore PewJay memories by year in a full-screen visual timeline.">
+  <title>Timeline - PewJay Official</title>
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/site.js" defer></script>
+</head>
+<body class="page page-timeline" data-page="timeline">
+  <div data-site-header></div>
+  <div class="page-transition is-visible" id="pageTransition" aria-hidden="true"><div class="transition-mark"><span></span><span></span><span></span></div><img src="assets/logo-name.png" alt=""><p>LOADING PEWJAY</p></div>
+
+  <main class="timeline-main">
+    <section class="timeline-experience" data-timeline-stage aria-label="PewJay memories">
+      <div class="timeline-background" aria-hidden="true">
+        <img class="timeline-background__image" data-timeline-background src="assets/home/sketching/3.jpg" alt="">
+        <img class="timeline-background__image" data-timeline-background-next alt="">
+        <div class="timeline-background__shade"></div>
+      </div>
+
+      <div class="timeline-top">
+        <div class="timeline-intro">
+          <p class="eyebrow"><span class="eyebrow-line"></span> THE PEWJAY STORY</p>
+          <h1 id="timelineHeading">OUR<br><span>MEMORIES</span></h1>
+          <p>A growing collection of moments, artwork, and little stories from the PewJay world.</p>
+        </div>
+        <div class="timeline-year-picker">
+          <p class="timeline-year-picker__label">SELECT YEAR</p>
+          <div class="timeline-year-options" data-timeline-years role="group" aria-label="Filter memories by year">
+            <button class="is-selected" type="button" data-year="ALL" aria-pressed="true">ALL</button>
+          </div>
+        </div>
+      </div>
+
+      <article class="timeline-memory" data-timeline-memory aria-live="polite" aria-atomic="true">
+        <div class="timeline-memory__meta">
+          <span class="timeline-memory__category" data-memory-category>SKETCHBOOK</span>
+          <span class="timeline-memory__year" data-memory-year>TBA</span>
+          <span class="timeline-memory__release" data-memory-release>DATE TO BE ANNOUNCED</span>
+        </div>
+        <h2 data-memory-title>From the sketchbook</h2>
+        <p class="timeline-memory__subheading" data-memory-subheading>Every new idea starts somewhere.</p>
+        <p class="timeline-memory__description" data-memory-description>A quiet look at the lines and early ideas behind a PewJay illustration.</p>
+      </article>
+
+      <div class="timeline-navigation" aria-label="Memory navigation">
+        <button class="timeline-arrow" type="button" data-timeline-prev aria-label="Previous memory"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+        <span class="timeline-navigation__index" data-memory-index>01 / 03</span>
+        <button class="timeline-arrow" type="button" data-timeline-next aria-label="Next memory"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <p class="timeline-swipe-hint"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> USE THE ARROWS OR SWIPE TO EXPLORE</p>
+      <div class="timeline-progress" aria-hidden="true"><span data-timeline-progress></span></div>
+    </section>
+  </main>
+</body>
+</html>
