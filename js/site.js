@@ -147,7 +147,7 @@
       releaseAt: "2027-08-14T00:00:00+08:00",
       image: "assets/event/the-bluey-movie.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "https://pewjayart.github.io/about-new/trailer2.html",
+      link: "https://pewjayofficial.github.io/event-countdown",
       linkLabel: "Watch Teaser"
     },
     {
