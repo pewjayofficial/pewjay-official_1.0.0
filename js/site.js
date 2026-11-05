@@ -131,16 +131,6 @@
       linkLabel: "Watch Teaser"
     },
     {
-      id: "film-anniversary",
-      eyebrow: "10TH ANNIVERSARY",
-      title: "TROLLS 2016",
-      releaseAt: "2026-11-04T12:00:00+08:00",
-      image: "assets/event/10th-anniversary.jpg",
-      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "social.html",
-      linkLabel: "Follow for updates"
-    },
-    {
       id: "new-movie-release-3",
       eyebrow: "THIS THEATER",
       title: "THE BLUEY MOVIE",
