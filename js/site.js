@@ -137,7 +137,7 @@
       releaseAt: "2027-08-06T12:00:00+08:00",
       image: "assets/event/the-bluey-movie.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "https://pewjayart.github.io/about-new/trailer2.html",
+      link: "https://pewjayofficial.github.io/event-countdown",
       linkLabel: "Watch Teaser"
     },
     {
@@ -297,7 +297,7 @@
         name: "_Redxsilver_",
         username: "@Redilver_Silvered_forever",
         photo: "assets/fandom-collaboration/user-photo/redilver-silvered-forever.jpg",
-        socialLink: [{ name: "Instagram", url: "https://www.instagram.com/redilver_silvered_forever?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw==", icon: "fa-instagram" },
+        socialLink: [{ name: "Instagram", url: "https://www.instagram.com/redilver_silveredforever/?utm_source=ig_web_button_share_sheet", icon: "fa-instagram" },
                      { name: "YouTube", url: "https://youtube.com/@redilver_silvered_forever?si=UHuLSpllqu5Remfn", icon: "fa-youtube" },
                      { name: "Pinterest", url: "https://ph.pinterest.com/Redilver_silvered_forever/_created/", icon: "fa-pinterest" },
                      { name: "DeviantArt", url: "https://www.deviantart.com/sonicmoviecute", icon: "fa-deviantart" },
