@@ -104,7 +104,7 @@
       id: "new-movie-release",
       eyebrow: "THIS THEATER",
       title: "THE ANGRY BIRDS MOVIE 3",
-      releaseAt: "2026-12-23T12:00:00+08:00",
+      releaseAt: "2026-12-23T16:00:00+08:00",
       image: "assets/event/the-angry-birds-movie-3.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
       link: "https://pewjayofficial.github.io/event-countdown",
