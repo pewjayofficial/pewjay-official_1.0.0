@@ -114,7 +114,7 @@
       id: "new-movie-release-2",
       eyebrow: "THIS SOUTHWOODS CINEMAS",
       title: "THE ANGRY BIRDS MOVIE 3",
-      releaseAt: "THIS JANUARY 2027",
+      releaseAt: "2027-01-20T12:00:00+08:00",
       image: "assets/event/the-angry-birds-movie-3.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
       link: "https://pewjayofficial.github.io/event-countdown",
