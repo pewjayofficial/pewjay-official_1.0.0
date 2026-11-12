@@ -42,27 +42,38 @@
 
     <template id="eventCardTemplate">
       <article class="event-countdown-card">
-        <img class="event-countdown-card__image" data-event-image src="" alt="">
-        <div class="event-countdown-card__shade" aria-hidden="true"></div>
+        <div class="event-countdown-card__photo">
+          <img class="event-countdown-card__image" data-event-image src="" alt="">
+          <div class="event-countdown-card__shade" aria-hidden="true"></div>
+          <div class="event-countdown-card__photo-meta" aria-hidden="true">
+            <span>PEWJAY OFFICIAL</span>
+            <strong data-event-number>01</strong>
+          </div>
+        </div>
         <div class="event-countdown-card__layout">
           <div class="event-countdown-card__details">
             <p class="event-countdown-card__eyebrow" data-event-eyebrow></p>
             <h3 data-event-title></h3>
-            <p class="event-countdown-card__description" data-event-description></p>
-            <div class="event-release"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-card-release data-event-release></span></div>
+            <div class="event-release">
+              <span class="event-release__label">Release date &amp; schedule</span>
+              <span class="event-release__value"><i class="fa-regular fa-calendar" aria-hidden="true"></i><span data-card-release data-event-release></span></span>
+            </div>
             <button class="button button--glass event-expand-button" type="button" data-open-event>
-              <span>Open full screen</span><i class="fa-solid fa-expand" aria-hidden="true"></i>
+              <span>More about</span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
             </button>
           </div>
-          <div class="event-countdown-card__timer">
-            <p class="event-countdown-card__timer-label" data-event-countdown-label></p>
-            <div class="countdown-grid" data-event-timer>
+          <div class="event-countdown-card__timer" aria-label="Event countdown">
+            <p class="event-countdown-card__timer-label" data-event-countdown-heading>COUNTDOWNS</p>
+            <div class="countdown-grid" data-event-timer hidden>
               <div class="countdown-unit"><strong data-countdown-value="days">TBA</strong><span>Days</span></div>
               <div class="countdown-unit"><strong data-countdown-value="hours">TBA</strong><span>Hours</span></div>
               <div class="countdown-unit"><strong data-countdown-value="minutes">TBA</strong><span>Minutes</span></div>
               <div class="countdown-unit"><strong data-countdown-value="seconds">TBA</strong><span>Seconds</span></div>
             </div>
-            <p class="countdown-status" data-card-status data-event-status></p>
+            <div class="event-countdown-card__announcement" data-card-announcement data-event-announcement aria-live="polite" aria-atomic="true" hidden>
+              <h4 data-event-announcement-heading>T B A</h4>
+              <p data-event-announcement-text>TO BE ANNOUNCED</p>
+            </div>
           </div>
         </div>
       </article>
@@ -82,14 +93,17 @@
             <a class="text-link" data-fullscreen-link href="social.html">Follow for updates <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
           </section>
           <section class="event-fullscreen__timer" aria-label="Event countdown">
-            <p class="event-countdown-card__timer-label" data-fullscreen-countdown-label></p>
-            <div class="countdown-grid" data-fullscreen-timer data-event-timer>
+            <p class="event-countdown-card__timer-label" data-fullscreen-countdown-heading>COUNTDOWNS</p>
+            <div class="countdown-grid" data-fullscreen-timer data-event-timer hidden>
               <div class="countdown-unit"><strong data-countdown-value="days">TBA</strong><span>Days</span></div>
               <div class="countdown-unit"><strong data-countdown-value="hours">TBA</strong><span>Hours</span></div>
               <div class="countdown-unit"><strong data-countdown-value="minutes">TBA</strong><span>Minutes</span></div>
               <div class="countdown-unit"><strong data-countdown-value="seconds">TBA</strong><span>Seconds</span></div>
             </div>
-            <p class="countdown-status" data-fullscreen-status data-event-status></p>
+            <div class="event-countdown-card__announcement" data-fullscreen-announcement data-event-announcement aria-live="polite" aria-atomic="true" hidden>
+              <h4 data-event-announcement-heading>T B A</h4>
+              <p data-event-announcement-text>TO BE ANNOUNCED</p>
+            </div>
           </section>
         </div>
       </div>

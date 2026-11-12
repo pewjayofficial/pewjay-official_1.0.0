@@ -97,88 +97,89 @@
     }
   };
 
-  // Add or edit event objects here. Give each event a unique id and use an ISO 8601
-  // date with timezone offset; keep releaseAt empty while its date is TBA.
+  // Add or edit event objects here. Give each event a unique id. Set countdownRelease
+  // to an ISO 8601 date with timezone offset, or null if the exact date is TBA. Use
+  // countdownLabel for an approximate schedule such as "THIS DECEMBER 2027" and
+  // countdownOver for the label shown after the countdown ends.
   const eventCountdowns = [
+    {
+      id: "new-fandom",
+      eyebrow: "NEW FANDOM!!!",
+      title: "LOVE OR ANGER?",
+      countdownRelease: "2026-11-17T12:00:00+08:00",
+      countdownOver: "WELCOME TO ANGRY BIRDS FANDOM",
+      image: "assets/event/new-fandom.jpg",
+      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
+      link: "https://youtu.be/I_IJ2MuE3A8?si=VbZbj4WagSjZXJ4J",
+      linkLabel: "WATCH TEASER"
+    },
     {
       id: "new-movie-release",
       eyebrow: "THIS THEATER",
       title: "THE ANGRY BIRDS MOVIE 3",
-      releaseAt: "2026-12-23T16:00:00+08:00",
+      countdownRelease: "2026-12-23T16:00:00+08:00",
+      countdownOver: "NOW SHOWING",
       image: "assets/event/the-angry-birds-movie-3.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
       link: "https://pewjayofficial.github.io/event-countdown",
-      linkLabel: "Watch Trailer"
+      linkLabel: "WATCH TRAILER"
     },
     {
       id: "new-movie-release-2",
       eyebrow: "THIS SOUTHWOODS CINEMAS",
       title: "THE ANGRY BIRDS MOVIE 3",
-      releaseAt: "2027-01-20T12:00:00+08:00",
+      countdownRelease: "2027-01-20T12:00:00+08:00",
+      countdownOver: "NOW BIG-SCREENING",
       image: "assets/event/the-angry-birds-movie-3.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
       link: "https://pewjayofficial.github.io/event-countdown",
-      linkLabel: "Watch Trailer"
-    },
-    {
-      id: "new-fandom",
-      eyebrow: "NEW FANDOM!!!",
-      title: "LOVE OR ANGER?",
-      releaseAt: "2026-11-17T12:00:00+08:00",
-      image: "assets/event/new-fandom.jpg",
-      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "https://youtu.be/I_IJ2MuE3A8?si=VbZbj4WagSjZXJ4J",
-      linkLabel: "Watch Teaser"
-    },
-    {
-      id: "new-movie-release-3",
-      eyebrow: "THIS THEATER",
-      title: "THE BLUEY MOVIE",
-      releaseAt: "2027-08-06T12:00:00+08:00",
-      image: "assets/event/the-bluey-movie.jpg",
-      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "https://pewjayofficial.github.io/event-countdown",
-      linkLabel: "Watch Teaser"
-    },
-    {
-      id: "new-movie-release-4",
-      eyebrow: "THIS SOUTHWOODS CINEMAS",
-      title: "THE BLUEY MOVIE",
-      releaseAt: "2027-08-14T00:00:00+08:00",
-      image: "assets/event/the-bluey-movie.jpg",
-      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "https://pewjayofficial.github.io/event-countdown",
-      linkLabel: "Watch Teaser"
+      linkLabel: "WATCH TRAILER"
     },
     {
       id: "birthday-event",
       eyebrow: "BIRTHDAY",
       title: "LIFE N' PERSON",
-      releaseAt: "2027-02-25T00:00:00+08:00",
-      image: "",
-      imageAlt: "",
-      link: "social.html",
-      linkLabel: "Follow for updates"
+      countdownRelease: "2027-02-25T00:00:00+08:00",
+      countdownOver: "HBD JUSTIN JAY HERNANDO"
     },
     {
       id: "pewjay-anniversary",
       eyebrow: "ANNIVERSARY",
       title: "PEWJAY'S REBIRTH",
-      releaseAt: "2027-06-08T12:00:00+08:00",
-      image: "",
-      imageAlt: "",
-      link: "social.html",
-      linkLabel: "Follow for updates"
+      countdownRelease: "2027-06-08T12:00:00+08:00",
+      countdownOver: "HAPPY 5TH ANNIVERSARY"
+    },
+    {
+      id: "new-movie-release-3",
+      eyebrow: "THIS THEATER",
+      title: "THE BLUEY MOVIE",
+      countdownRelease: "2027-08-06T12:00:00+08:00",
+      countdownOver: "NOW SHOWING",
+      image: "assets/event/the-bluey-movie.jpg",
+      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
+      link: "https://pewjayofficial.github.io/event-countdown",
+      linkLabel: "WATCH TEASER"
     },
     {
       id: "broppy-day",
       eyebrow: "HOLIDAY EVENT",
       title: "BROPPY DAY",
-      releaseAt: "2027-09-21T12:00:00+08:00",
+      countdownRelease: "2027-09-21T12:00:00+08:00",
+      countdownOver: "HAPPY BROPPY DAY",
       image: "assets/event/broppy-day.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "social.html",
-      linkLabel: "Follow for updates"
+    },
+    {
+      id: "new-movie-release-4",
+      eyebrow: "THIS SOUTHWOODS CINEMAS",
+      title: "THE BLUEY MOVIE",
+      countdownLabel: null,
+      countdownRelease: null,
+      countdownOver: "NOW BIG-SCREENING",
+      image: "assets/event/the-bluey-movie.jpg",
+      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
+      link: "https://pewjayofficial.github.io/event-countdown",
+      linkLabel: "WATCH TEASER"
     },
   ];
 
@@ -933,15 +934,15 @@
     eventCountdowns.forEach((event, index) => {
       const card = template.content.firstElementChild.cloneNode(true);
       card.dataset.eventIndex = String(index);
+      card.querySelector("[data-event-number]").textContent = String(index + 1).padStart(2, "0");
       card.querySelector("[data-event-eyebrow]").textContent = event.eyebrow;
       card.querySelector("[data-event-title]").textContent = event.title;
-      card.querySelector("[data-event-description]").textContent = event.description;
-      card.querySelector("[data-event-image]").src = event.image;
-      card.querySelector("[data-event-image]").alt = event.imageAlt;
+      card.querySelector("[data-event-image]").src = event.image || "assets/event/bg.jpg";
+      card.querySelector("[data-event-image]").alt = event.imageAlt || "PewJay event background";
       card.querySelector("[data-card-release]").dataset.eventRelease = event.id;
-      card.querySelector("[data-card-status]").dataset.eventStatus = event.id;
       card.querySelector("[data-event-timer]").dataset.eventTimer = event.id;
-      card.querySelector("[data-event-countdown-label]").textContent = "COUNTDOWN TO THE EVENT";
+      card.querySelector("[data-event-countdown-heading]").dataset.eventCountdownHeading = event.id;
+      card.querySelector("[data-card-announcement]").dataset.eventAnnouncement = event.id;
       card.querySelector("[data-open-event]").dataset.openEvent = String(index);
       list.append(card);
     });
@@ -958,25 +959,36 @@
     const updateCountdowns = () => {
       const now = Date.now();
       eventCountdowns.forEach((event) => {
-        const target = event.releaseAt ? new Date(event.releaseAt).getTime() : Number.NaN;
+        const target = event.countdownRelease ? new Date(event.countdownRelease).getTime() : Number.NaN;
         const hasDate = Number.isFinite(target);
         const remaining = hasDate ? Math.max(0, Math.floor((target - now) / 1000)) : 0;
-        const values = hasDate ? {
+        const isCountingDown = hasDate && remaining > 0;
+        const values = isCountingDown ? {
           days: formatValue(Math.floor(remaining / 86400)),
           hours: formatValue(Math.floor((remaining % 86400) / 3600)),
           minutes: formatValue(Math.floor((remaining % 3600) / 60)),
           seconds: formatValue(remaining % 60)
         } : { days: "TBA", hours: "TBA", minutes: "TBA", seconds: "TBA" };
-        const dateText = hasDate ? releaseFormatter.format(new Date(target)) : "DATE TO BE ANNOUNCED";
-        const statusText = !hasDate ? "DATE TO BE ANNOUNCED" : remaining > 0 ? "COUNTING DOWN TO THE EVENT" : "COUNTDOWN COMPLETE";
-
+        const dateText = hasDate ? releaseFormatter.format(new Date(target)) : (event.countdownLabel || "TO BE ANNOUNCED");
+        const announcementHeading = !hasDate ? "T B A" : (event.countdownOver || "NOW SHOWING");
         document.querySelectorAll("[data-event-timer]").forEach((group) => {
           if (group.dataset.eventTimer !== event.id) return;
+          group.hidden = !isCountingDown;
           group.classList.toggle("is-tba", !hasDate);
           Object.entries(values).forEach(([unit, value]) => updateValue(group.querySelector(`[data-countdown-value="${unit}"]`), value));
         });
+        document.querySelectorAll(`[data-event-countdown-heading="${event.id}"]`).forEach((node) => {
+          node.textContent = "COUNTDOWNS";
+          node.closest(".event-countdown-card__timer, .event-fullscreen__timer")?.classList.toggle("is-tba", !hasDate);
+        });
+        document.querySelectorAll(`[data-event-announcement="${event.id}"]`).forEach((node) => {
+          node.querySelector("[data-event-announcement-heading]").textContent = announcementHeading;
+          const subheading = node.querySelector("[data-event-announcement-text]");
+          subheading.textContent = !hasDate ? "TO BE ANNOUNCED" : "";
+          subheading.hidden = hasDate;
+          node.hidden = isCountingDown;
+        });
         document.querySelectorAll(`[data-event-release="${event.id}"]`).forEach((node) => { node.textContent = dateText; });
-        document.querySelectorAll(`[data-event-status="${event.id}"]`).forEach((node) => { node.textContent = statusText; });
       });
     };
 
@@ -988,14 +1000,14 @@
       const rect = trigger.getBoundingClientRect();
       dialog.style.setProperty("--event-origin-x", `${rect.left + rect.width / 2}px`);
       dialog.style.setProperty("--event-origin-y", `${rect.top + rect.height / 2}px`);
-      fullscreenImage.src = event.image;
-      fullscreenImage.alt = event.imageAlt;
+      fullscreenImage.src = event.image || "assets/event/bg.jpg";
+      fullscreenImage.alt = event.imageAlt || "PewJay event background";
       dialog.querySelector("[data-fullscreen-eyebrow]").textContent = event.eyebrow;
       dialog.querySelector("[data-fullscreen-title]").textContent = event.title;
-      dialog.querySelector("[data-fullscreen-description]").textContent = event.description;
+      dialog.querySelector("[data-fullscreen-description]").textContent = event.description || "";
       dialog.querySelector("[data-fullscreen-release]").dataset.eventRelease = event.id;
-      dialog.querySelector("[data-fullscreen-countdown-label]").textContent = "COUNTDOWN TO THE EVENT";
-      dialog.querySelector("[data-fullscreen-status]").dataset.eventStatus = event.id;
+      dialog.querySelector("[data-fullscreen-countdown-heading]").dataset.eventCountdownHeading = event.id;
+      dialog.querySelector("[data-fullscreen-announcement]").dataset.eventAnnouncement = event.id;
       fullscreenTimer.dataset.eventTimer = event.id;
       const link = dialog.querySelector("[data-fullscreen-link]");
       link.href = event.link || "#";
