@@ -114,6 +114,17 @@
       linkLabel: "WATCH TEASER"
     },
     {
+      id: "new-sondtrack-release",
+      eyebrow: "JISOO",
+      title: "SUN SHOWERS",
+      countdownRelease: "2026-11-20T12:00:00+08:00",
+      countdownOver: "NOW STREAMING",
+      image: "assets/event/Jisoo-Sun-Showers.jpg",
+      imageAlt: "Colorful PewJay artwork for an upcoming creative event",
+      link: "https://youtu.be/QRmKBY_OJkY?si=UjS_IrswHzFRhr0A",
+      linkLabel: "LISTEN NOW"
+    },
+    {
       id: "new-movie-release",
       eyebrow: "THIS THEATER",
       title: "THE ANGRY BIRDS MOVIE 3",
