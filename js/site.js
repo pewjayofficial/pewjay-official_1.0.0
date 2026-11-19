@@ -2,7 +2,7 @@
   "use strict";
 
   // Set true to take the site offline for maintenance; set false to bring it online.
-  const MAINTENANCE_MODE = true;
+  const MAINTENANCE_MODE = false;
 
   const pages = [
     ["Home", "home.html"],
