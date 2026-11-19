@@ -506,7 +506,7 @@
     {
       year: "2026",
       releaseDate: "FEBRUARY 25, 2026",
-      category: "BIRTHDAY & SPECIALIZATIONS",
+      category: "BIRTHDAY & FANDOM",
       title: "18TH BIRTHDAY",
       subheading: "TURNS 18TH / NEW PIXAR ELEMENTAL FANDOM",
       image: "assets/timeline/18th.jpg",
@@ -546,6 +546,15 @@
       title: "PEWJAY WEBSITE",
       subheading: "FIRST CREATED PEWJAY WEBSITES",
       image: "assets/timeline/first-websites.jpg",
+      imageAlt: "Colorful characters from the PewJay world"
+    },
+    {
+      year: "2026",
+      releaseDate: "NOVEMBER 17, 2026",
+      category: "FANDOM",
+      title: "ANGRY BIRDS",
+      subheading: "NEW SPECILIZATION ANGER FANDOM",
+      image: "assets/timeline/angry-birds.jpg",
       imageAlt: "Colorful characters from the PewJay world"
     }
   ];
