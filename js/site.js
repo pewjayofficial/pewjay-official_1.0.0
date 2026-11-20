@@ -16,6 +16,30 @@
     ["Donation", "donation.html"] 
   ];
 
+  // false = public (show the top promo); true = private (hide the top promo).
+  const TOP_NAV_PRIVATE_MODE = false;
+  // Separate What's New switch: false = public (show the panel); true = private (hide it).
+  const WHATS_NEW_PRIVATE_MODE = false;
+
+  // Navigation feature note: when adding or changing a film, event, or release here,
+  // include a short summary of the changed title, date, links, and image in the chat handoff.
+  const navigationPromo = {
+    film: {
+      image: "assets/new-event-navigation-top/logo-film.png",
+      imageAlt: "The Angry Birds Movie 3 logo"
+    },
+    release: {
+      artist: "JISOO",
+      title: "SUN SHOWERS", 
+      status: "NOW STREAMING | LISTEN NOW!!!",
+      href: "https://jisoo.lnk.to/SunShowers"
+    },
+    platforms: [
+      ["YouTube Music", "assets/new-event-navigation-top/yt-music-icon.png", "https://music.youtube.com/playlist?list=OLAK5uy_nFUdqnRkJFeoaVi5m04SwVwbziMsMBPto&si=OPaBypiQ7gXfysFm&drli=1"],
+      ["Spotify", "assets/new-event-navigation-top/spotify-icon.png", "https://open.spotify.com/track/43LLlCRgC6fYYqIaXGLmpd"]
+    ]
+  };
+
   const socialLinks = [
     ["YouTube", "https://youtube.com/@PewJay_Art", "fa-youtube"],
     ["Instagram", "https://www.instagram.com/PewJay_Art", "fa-instagram"],
@@ -32,8 +56,84 @@
     return `<li><a class="${active.trim()}" href="${href}"${active ? ' aria-current="page"' : ""}><span>0${index + 1}</span>${label}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>`;
   }).join("");
 
+  const navigationPromoMarkup = `
+    <div class="site-header__promo" role="group" aria-label="Featured film and music">
+      <div class="site-header__promo-film">
+        <img src="${navigationPromo.film.image}" alt="${navigationPromo.film.imageAlt}">
+      </div>
+      <a class="site-header__promo-release" href="${navigationPromo.release.href}" target="_blank" rel="noopener noreferrer" aria-label="Listen to ${navigationPromo.release.artist} ${navigationPromo.release.title}">
+        <span class="site-header__promo-copy"><small>${navigationPromo.release.artist}</small><strong>${navigationPromo.release.title}</strong><span>${navigationPromo.release.status}</span></span>
+      </a>
+      <div class="site-header__promo-listen">
+        <span>LISTEN NOW</span>
+        <div class="site-header__promo-platforms">
+          ${navigationPromo.platforms.map(([name, image, href]) => `<a href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Listen on ${name}"><img src="${image}" alt=""></a>`).join("")}
+        </div>
+      </div>
+    </div>`;
+
+  const topNavigationPromoMarkup = TOP_NAV_PRIVATE_MODE ? "" : navigationPromoMarkup;
+
+  const navigationPromoStyles = `
+    :root { --site-promo-height: ${TOP_NAV_PRIVATE_MODE ? "0px" : "54px"}; --site-nav-height: 86px; --site-header-height: calc(var(--site-promo-height) + var(--site-nav-height)); }
+    .site-header { display: flex; height: var(--site-header-height); flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; padding: 0; }
+    .site-header__promo { display: ${TOP_NAV_PRIVATE_MODE ? "none" : "flex"}; width: 100%; height: var(--site-promo-height); min-height: 0; flex: 0 0 auto; align-items: center; justify-content: center; gap: clamp(68px, 8vw, 120px); padding: 4px var(--page-gutter); border: 0; border-bottom: 1px solid rgba(48, 30, 56, .2); border-radius: 0; color: #24172d; background: linear-gradient(90deg, #f4a900, #ffd126 50%, #f4a900); }
+    .site-header__promo-film { display: flex; min-width: 0; align-items: center; justify-content: flex-start; }
+    .site-header__promo-film img { width: min(100%, 190px); max-height: 42px; object-fit: contain; }
+    .site-header__promo-release { display: flex; min-width: 0; align-items: center; justify-content: center; gap: 10px; color: #24172d; }
+    .site-header__promo-copy { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 1px; line-height: 1.2; text-align: center; }
+    .site-header__promo-copy small { color: #57375f; font-size: 8px; font-weight: 700; letter-spacing: .17em; }
+    .site-header__promo-copy strong { overflow: hidden; color: #24172d; font-size: 13px; font-weight: 800; letter-spacing: .09em; text-overflow: ellipsis; white-space: nowrap; }
+    .site-header__promo-copy > span { color: #57375f; font-size: 7px; font-weight: 700; letter-spacing: .1em; }
+    .site-header__promo-listen { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #34203d; font-size: 8px; font-weight: 800; letter-spacing: .14em; white-space: nowrap; }
+    .site-header__promo-platforms { display: flex; align-items: center; gap: 7px; }
+    .site-header__promo-platforms a { display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid rgba(48, 30, 56, .17); border-radius: 50%; background: rgba(255, 255, 255, .28); transition: transform .2s ease, background .2s ease; }
+    .site-header__promo-platforms a:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .55); }
+    .site-header__promo-platforms img { width: 20px; height: 20px; object-fit: contain; }
+    .site-header__row { display: flex; width: 100%; height: var(--site-nav-height); flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--page-gutter); }
+    .nav-overlay { padding-top: calc(var(--site-header-height) + 16px); }
+    .subpage-main { padding-top: var(--site-header-height); }
+    .story-panel { padding-top: calc(112px + var(--site-promo-height)); }
+    @media (max-width: 760px) {
+      :root { --site-promo-height: ${TOP_NAV_PRIVATE_MODE ? "0px" : "46px"}; --site-nav-height: 75px; }
+      .site-header__row { gap: 11px; }
+      .site-header__promo { gap: clamp(30px, 6vw, 46px); }
+      .site-header__promo-film img { width: min(100%, 82px); max-height: 30px; }
+      .site-header__promo-copy small { font-size: 7px; }
+      .site-header__promo-copy strong { font-size: 10px; }
+      .site-header__promo-copy > span { display: none; }
+      .site-header__promo-listen { flex-direction: row; gap: 5px; }
+      .site-header__promo-listen > span { display: none; }
+      .site-header__promo-platforms { gap: 4px; }
+      .site-header__promo-platforms a { width: 23px; height: 23px; }
+      .site-header__promo-platforms img { width: 16px; height: 16px; }
+      .story-panel { padding-top: calc(103px + var(--site-promo-height)); }
+    }
+    @media (max-width: 480px) {
+      .site-header__promo { gap: clamp(16px, 5vw, 24px); }
+      .site-header__promo-film img { width: min(100%, 58px); max-height: 25px; }
+      .site-header__promo-release { gap: 6px; }
+      .site-header__promo-copy small { font-size: 6px; }
+      .site-header__promo-copy strong { font-size: 9px; }
+      .site-header__promo-platforms { gap: 3px; }
+      .site-header__promo-platforms a { width: 20px; height: 20px; }
+      .site-header__promo-platforms img { width: 14px; height: 14px; }
+    }
+    @media (max-width: 360px) {
+      :root { --page-gutter: 14px; }
+      .site-header__row { gap: 7px; }
+      .site-header__promo { gap: 13px; }
+      .site-header__promo-film img { width: 42px; }
+      .site-header__promo-copy strong { font-size: 8px; }
+      .site-header__promo-platforms a { width: 18px; height: 18px; }
+      .site-header__promo-platforms img { width: 12px; height: 12px; }
+    }
+  `;
+
   const headerMarkup = `
     <header class="site-header">
+      ${topNavigationPromoMarkup}
+      <div class="site-header__row">
       <div class="site-header__left">
         <a class="brand-lockup" href="home.html" aria-label="PewJay home"><img src="assets/logo-name.png" alt="PewJay"></a>
         <div class="header-date"><span class="header-date__label">TODAY, YOUR TIME</span><span class="header-date__value" data-local-date>Loading date</span></div>
@@ -44,6 +144,7 @@
           <span class="header-time__readout"><span class="header-time__weekday" data-local-weekday>Loading day</span><span class="header-time__clock"><time data-local-clock>--:--:-- --</time><span class="header-time__zone" data-local-zone></span></span></span>
         </div>
         <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="fullNavigation" data-menu-toggle><span class="menu-toggle__lines" aria-hidden="true"><span></span><span></span></span></span></button>
+      </div>
       </div>
     </header>
     <nav class="nav-overlay" id="fullNavigation" aria-label="Main navigation" aria-hidden="true">
@@ -96,6 +197,29 @@
       alt: "Characters from the PewJay world"
     }
   };
+
+  // Edit this list to change the What's New slides, photos, release details, or optional buttons.
+  const whatsNewItems = [
+    {
+      subheading: 'JISOO — "SUN SHOWERS"',
+      releaseDate: "November 20, 2026",
+      description: 'JISOO’s new single, “Sun Showers,” is out now. Listen to the latest release and enjoy the new music.',
+      image: "assets/home/what's-new/jisoo-sun-showers.jpg",
+      imagePosition: "center 38%",
+      link: "https://jisoo.lnk.to/SunShowers",
+      linkLabel: "LISTEN NOW",
+      linkTarget: "_blank"
+    },
+    {
+      subheading: "LOVE OR ANGER?",
+      releaseDate: "November 17, 2026",
+      description: "",
+      image: "assets/home/what's-new/angry-birds.jpg",
+      imagePosition: "center 48%",
+      link: "https://youtu.be/Jy2MuNRb_9w?si=-rWrmFe2QiZwmtuz",
+      linkLabel: "WATCH IT"
+    }
+  ];
 
   // Add or edit event objects here. Give each event a unique id. Set countdownRelease
   // to an ISO 8601 date with timezone offset, or null if the exact date is TBA. Use
@@ -560,6 +684,12 @@
   ];
 
   function mountSharedRegions() {
+    if (!document.querySelector("[data-navigation-promo-styles]")) {
+      const style = document.createElement("style");
+      style.dataset.navigationPromoStyles = "";
+      style.textContent = navigationPromoStyles;
+      document.head.append(style);
+    }
     document.querySelectorAll("[data-site-header]").forEach((slot) => { slot.innerHTML = headerMarkup; });
     document.querySelectorAll("[data-site-footer]").forEach((slot) => { slot.innerHTML = footerMarkup; });
     if (!document.querySelector("[data-cookie-notice]") && !document.body.classList.contains("intro-page")) {
@@ -618,7 +748,7 @@
       nav.setAttribute("aria-hidden", "false");
       nav.classList.add("is-open");
       document.body.classList.add("menu-open");
-      const firstLink = nav.querySelector("a");
+      const firstLink = nav.querySelector(".nav-overlay__list a") || nav.querySelector("a");
       window.setTimeout(() => firstLink?.focus({ preventScroll: true }), 150);
     };
 
@@ -704,11 +834,20 @@
   function setupStoryDeck() {
     const deck = document.querySelector("[data-story-deck]");
     if (!deck) return;
-    const panels = [...deck.querySelectorAll("[data-story-panel]")];
-    const dots = [...deck.querySelectorAll("[data-story-dot]")];
+    const whatsNewPanel = deck.querySelector("[data-whats-new-panel]");
+    const whatsNewDot = deck.querySelector('[data-story-dot="1"]');
+    if (WHATS_NEW_PRIVATE_MODE) {
+      if (whatsNewPanel) whatsNewPanel.hidden = true;
+      if (whatsNewDot) whatsNewDot.hidden = true;
+    }
+    const panels = [...deck.querySelectorAll("[data-story-panel]")].filter((panel) => !(WHATS_NEW_PRIVATE_MODE && panel === whatsNewPanel));
+    const dots = [...deck.querySelectorAll("[data-story-dot]")].filter((dot) => !dot.hidden);
+    dots.forEach((dot, index) => { dot.dataset.storyDot = String(index); });
     const progress = deck.querySelector("[data-story-progress]");
     let current = 0;
     let switching = false;
+    dots.forEach((dot, index) => dot.setAttribute("aria-current", index === current ? "step" : "false"));
+    if (progress) progress.style.width = `${((current + 1) / panels.length) * 100}%`;
 
     const goTo = (index) => {
       if (index < 0 || index >= panels.length || index === current || switching) return;
@@ -766,6 +905,119 @@
       }
     });
     document.querySelector("[data-back-to-top]")?.addEventListener("click", () => goTo(0));
+  }
+
+  function setupWhatsNew() {
+    const panel = document.querySelector("[data-whats-new-panel]");
+    if (!panel || WHATS_NEW_PRIVATE_MODE || !whatsNewItems.length) return;
+
+    const image = panel.querySelector("[data-whats-new-image]");
+    const subheading = panel.querySelector("[data-whats-new-subheading]");
+    const release = panel.querySelector("[data-whats-new-release]");
+    const description = panel.querySelector("[data-whats-new-description]");
+    const link = panel.querySelector("[data-whats-new-link]");
+    const dots = panel.querySelector("[data-whats-new-dots]");
+    const controls = panel.querySelector("[data-whats-new-controls]");
+    const stepButtons = [...panel.querySelectorAll("[data-whats-new-step]")];
+    let activeIndex = 0;
+    let pendingIndex = null;
+    let transitionTimer = 0;
+
+    const updateDots = (index) => {
+      if (!dots) return;
+      [...dots.children].forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+        dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
+      });
+    };
+
+    const paint = (index) => {
+      const item = whatsNewItems[index];
+      if (!item) return;
+      if (image) {
+        image.src = item.image;
+        image.style.objectPosition = item.imagePosition || "center";
+      }
+      if (subheading) subheading.textContent = item.subheading;
+      if (release) release.textContent = item.releaseDate;
+      if (description) description.textContent = item.description;
+      if (link) {
+        const hasAction = typeof item.link === "string" && item.link.trim() && typeof item.linkLabel === "string" && item.linkLabel.trim();
+        link.hidden = !hasAction;
+        if (hasAction) {
+          link.href = item.link;
+          link.textContent = item.linkLabel;
+          if (item.linkTarget === "_blank") {
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+          } else {
+            link.removeAttribute("target");
+            link.removeAttribute("rel");
+          }
+        } else {
+          link.removeAttribute("href");
+          link.removeAttribute("target");
+          link.removeAttribute("rel");
+          link.replaceChildren();
+        }
+      }
+    };
+
+    const render = (index, animate = false) => {
+      if (!whatsNewItems[index]) return;
+      if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        window.clearTimeout(transitionTimer);
+        pendingIndex = null;
+        activeIndex = index;
+        paint(index);
+        updateDots(index);
+        panel.classList.remove("is-changing");
+        return;
+      }
+
+      if (index === activeIndex && pendingIndex === null) return;
+      pendingIndex = index;
+      updateDots(index);
+      panel.classList.add("is-changing");
+      window.clearTimeout(transitionTimer);
+      transitionTimer = window.setTimeout(() => {
+        activeIndex = pendingIndex;
+        pendingIndex = null;
+        paint(activeIndex);
+        window.requestAnimationFrame(() => panel.classList.remove("is-changing"));
+      }, 240);
+    };
+
+    if (dots) {
+      dots.replaceChildren(...whatsNewItems.map((item, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "whats-new__dot";
+        dot.setAttribute("aria-label", `Show update ${index + 1}: ${item.subheading}`);
+        dot.setAttribute("aria-pressed", index === activeIndex ? "true" : "false");
+        dot.addEventListener("click", () => render(index, true));
+        return dot;
+      }));
+      dots.hidden = whatsNewItems.length < 2;
+    }
+    if (controls) controls.hidden = whatsNewItems.length < 2;
+    stepButtons.forEach((button) => button.addEventListener("click", () => {
+      const direction = Number(button.dataset.whatsNewStep);
+      const currentIndex = pendingIndex ?? activeIndex;
+      render((currentIndex + direction + whatsNewItems.length) % whatsNewItems.length, true);
+    }));
+
+    document.addEventListener("keydown", (event) => {
+      if (!panel.classList.contains("is-active") || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.repeat) return;
+      if (event.target.closest("input, textarea, select, [contenteditable='true']")) return;
+      const direction = event.key === "ArrowLeft" ? -1 : event.key === "ArrowRight" ? 1 : 0;
+      if (!direction) return;
+      event.preventDefault();
+      const currentIndex = pendingIndex ?? activeIndex;
+      render((currentIndex + direction + whatsNewItems.length) % whatsNewItems.length, true);
+    });
+
+    render(activeIndex);
   }
 
   function setupRotatingHeading() {
@@ -1525,6 +1777,7 @@
     setupCookieNotice();
     setupBackToTop();
     setupStoryDeck();
+    setupWhatsNew();
     setupRotatingHeading();
     setupContentShowcase();
     setupContactForm();
