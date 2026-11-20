@@ -121,7 +121,7 @@
       countdownOver: "NOW STREAMING",
       image: "assets/event/Jisoo-Sun-Showers.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
-      link: "https://youtu.be/QRmKBY_OJkY?si=UjS_IrswHzFRhr0A",
+      link: "https://jisoo.lnk.to/SunShowers?fbclid=PAZXh0bgNhZW0CMTEAcGRvZgJzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAafivu52sQpOLYWHbKSfJePwlg60swSW1mFQvIqTm1yzo7HzIJbbW98b5kELOg_aem_KFPgB96teA1nPal3yKgwbg",
       linkLabel: "LISTEN NOW"
     },
     {
