@@ -117,7 +117,7 @@
       id: "new-sondtrack-release",
       eyebrow: "JISOO",
       title: "SUN SHOWERS",
-      countdownRelease: "2026-11-20T00:00:00+08:00",
+      countdownRelease: "2026-11-20T12:00:00+08:00",
       countdownOver: "NOW STREAMING",
       image: "assets/event/Jisoo-Sun-Showers.jpg",
       imageAlt: "Colorful PewJay artwork for an upcoming creative event",
