@@ -881,7 +881,12 @@
     }, { passive: false });
 
     let touchStart = null;
-    deck.addEventListener("touchstart", (event) => { touchStart = event.changedTouches[0]?.clientY ?? null; }, { passive: true });
+    let touchStartX = null;
+    deck.addEventListener("touchstart", (event) => {
+      const touch = event.changedTouches[0];
+      touchStart = touch?.clientY ?? null;
+      touchStartX = touch?.clientX ?? null;
+    }, { passive: true });
     deck.addEventListener("touchmove", (event) => {
       if (touchStart === null) return;
       const currentY = event.changedTouches[0]?.clientY ?? touchStart;
@@ -892,10 +897,15 @@
     }, { passive: false });
     deck.addEventListener("touchend", (event) => {
       if (touchStart === null) return;
-      const difference = touchStart - (event.changedTouches[0]?.clientY ?? touchStart);
-      if (Math.abs(difference) > 52) goTo(current + (difference > 0 ? 1 : -1));
+      const touch = event.changedTouches[0];
+      const difference = touchStart - (touch?.clientY ?? touchStart);
+      const horizontalDifference = touchStartX === null ? 0 : touchStartX - (touch?.clientX ?? touchStartX);
       touchStart = null;
+      touchStartX = null;
+      if (Math.abs(horizontalDifference) > Math.abs(difference) * 1.15) return;
+      if (Math.abs(difference) > 52) goTo(current + (difference > 0 ? 1 : -1));
     }, { passive: true });
+    deck.addEventListener("touchcancel", () => { touchStart = null; touchStartX = null; }, { passive: true });
     document.addEventListener("keydown", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest("button, a, input, textarea, select")) return;
       if (event.key === "ArrowDown" || event.key === "PageDown") {
@@ -1016,6 +1026,24 @@
       const currentIndex = pendingIndex ?? activeIndex;
       render((currentIndex + direction + whatsNewItems.length) % whatsNewItems.length, true);
     });
+
+    let swipeStart = null;
+    panel.addEventListener("touchstart", (event) => {
+      const touch = event.changedTouches[0];
+      swipeStart = touch ? { x: touch.clientX, y: touch.clientY } : null;
+    }, { passive: true });
+    panel.addEventListener("touchend", (event) => {
+      if (!swipeStart) return;
+      const touch = event.changedTouches[0];
+      const deltaX = (touch?.clientX ?? swipeStart.x) - swipeStart.x;
+      const deltaY = (touch?.clientY ?? swipeStart.y) - swipeStart.y;
+      swipeStart = null;
+      if (Math.abs(deltaX) < 52 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.15) return;
+      const currentIndex = pendingIndex ?? activeIndex;
+      const direction = deltaX < 0 ? 1 : -1;
+      render((currentIndex + direction + whatsNewItems.length) % whatsNewItems.length, true);
+    }, { passive: true });
+    panel.addEventListener("touchcancel", () => { swipeStart = null; }, { passive: true });
 
     render(activeIndex);
   }
