@@ -207,8 +207,7 @@
       image: "assets/home/what's-new/jisoo-sun-showers.jpg",
       imagePosition: "center 38%",
       link: "https://jisoo.lnk.to/SunShowers",
-      linkLabel: "LISTEN NOW",
-      linkTarget: "_blank"
+      linkLabel: "LISTEN NOW"
     },
     {
       subheading: "LOVE OR ANGER?",
@@ -226,8 +225,8 @@
       image: "assets/home/what's-new/grand-theft-auto-vi.jpg",
       imagePosition: "center 38%",
       link: "https://youtu.be/rz1B4B2yBZY?si=KX47yq_KBNDI5wGy",
-      linkLabel: "WATCH TRAILER",
-      linkTarget: "_blank"
+      linkLabel: "WATCH TRAILER"
+      
     }
   ];
 
