@@ -201,7 +201,7 @@
   // Edit this list to change the What's New slides, photos, release details, or optional buttons.
   const whatsNewItems = [
     {
-      subheading: 'JISOO — "SUN SHOWERS"',
+      subheading: 'JISOO — SUN SHOWERS',
       releaseDate: "November 20, 2026",
       description: 'JISOO’s new single, “Sun Showers,” is out now. Listen to the latest release and enjoy the new music.',
       image: "assets/home/what's-new/jisoo-sun-showers.jpg",
