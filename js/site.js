@@ -844,6 +844,7 @@
     const dots = [...deck.querySelectorAll("[data-story-dot]")].filter((dot) => !dot.hidden);
     dots.forEach((dot, index) => { dot.dataset.storyDot = String(index); });
     const progress = deck.querySelector("[data-story-progress]");
+    const compactLandscape = window.matchMedia("(max-height: 600px) and (orientation: landscape)");
     let current = 0;
     let switching = false;
     dots.forEach((dot, index) => dot.setAttribute("aria-current", index === current ? "step" : "false"));
@@ -867,9 +868,17 @@
 
     dots.forEach((dot) => dot.addEventListener("click", () => goTo(Number(dot.dataset.storyDot))));
     deck.querySelectorAll("[data-story-next]").forEach((button) => button.addEventListener("click", () => goTo(Math.min(current + 1, panels.length - 1))));
+    const canScrollActivePanel = (direction) => {
+      if (!compactLandscape.matches) return false;
+      const panel = panels[current];
+      const maxScroll = panel.scrollHeight - panel.clientHeight;
+      if (maxScroll <= 1) return false;
+      return direction > 0 ? panel.scrollTop < maxScroll - 1 : panel.scrollTop > 1;
+    };
     let lastWheel = 0;
     deck.addEventListener("wheel", (event) => {
       const direction = Math.sign(event.deltaY);
+      if (!direction || canScrollActivePanel(direction)) return;
       const canAdvance = direction > 0 && current < panels.length - 1;
       const canReverse = direction < 0 && current > 0;
       if (!canAdvance && !canReverse) return;
@@ -882,15 +891,21 @@
 
     let touchStart = null;
     let touchStartX = null;
+    let touchMovedPanel = false;
     deck.addEventListener("touchstart", (event) => {
       const touch = event.changedTouches[0];
       touchStart = touch?.clientY ?? null;
       touchStartX = touch?.clientX ?? null;
+      touchMovedPanel = false;
     }, { passive: true });
     deck.addEventListener("touchmove", (event) => {
       if (touchStart === null) return;
       const currentY = event.changedTouches[0]?.clientY ?? touchStart;
       const movement = touchStart - currentY;
+      if (Math.abs(movement) > 2 && canScrollActivePanel(Math.sign(movement))) {
+        touchMovedPanel = true;
+        return;
+      }
       const canAdvance = movement > 8 && current < panels.length - 1;
       const canReverse = movement < -8 && current > 0;
       if (canAdvance || canReverse) event.preventDefault();
@@ -900,17 +915,30 @@
       const touch = event.changedTouches[0];
       const difference = touchStart - (touch?.clientY ?? touchStart);
       const horizontalDifference = touchStartX === null ? 0 : touchStartX - (touch?.clientX ?? touchStartX);
+      const movedPanel = touchMovedPanel;
       touchStart = null;
       touchStartX = null;
+      touchMovedPanel = false;
+      if (movedPanel) return;
       if (Math.abs(horizontalDifference) > Math.abs(difference) * 1.15) return;
       if (Math.abs(difference) > 52) goTo(current + (difference > 0 ? 1 : -1));
     }, { passive: true });
-    deck.addEventListener("touchcancel", () => { touchStart = null; touchStartX = null; }, { passive: true });
+    deck.addEventListener("touchcancel", () => { touchStart = null; touchStartX = null; touchMovedPanel = false; }, { passive: true });
     document.addEventListener("keydown", (event) => {
       if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest("button, a, input, textarea, select")) return;
       if (event.key === "ArrowDown" || event.key === "PageDown") {
+        if (canScrollActivePanel(1)) {
+          event.preventDefault();
+          panels[current].scrollBy({ top: event.key === "PageDown" ? panels[current].clientHeight * .8 : 42, behavior: "smooth" });
+          return;
+        }
         if (current < panels.length - 1) { event.preventDefault(); goTo(current + 1); }
       } else if (event.key === "ArrowUp" || event.key === "PageUp") {
+        if (canScrollActivePanel(-1)) {
+          event.preventDefault();
+          panels[current].scrollBy({ top: event.key === "PageUp" ? -panels[current].clientHeight * .8 : -42, behavior: "smooth" });
+          return;
+        }
         if (current > 0) { event.preventDefault(); goTo(current - 1); }
       }
     });
