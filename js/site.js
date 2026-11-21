@@ -218,6 +218,16 @@
       imagePosition: "center 48%",
       link: "https://youtu.be/Jy2MuNRb_9w?si=-rWrmFe2QiZwmtuz",
       linkLabel: "WATCH IT"
+    },
+    {
+      subheading: "GRAND THEFT AUTO VI",
+      releaseDate: "November 19, 2026",
+      description: "Explore the next chapter of the Grand Theft Auto series in Grand Theft Auto VI. Discover the world of Leonida, follow the story of Jason and Lucia, and experience an exciting new era of crime, adventure, and open-world action.",
+      image: "assets/home/what's-new/grand-theft-auto-vi.jpg",
+      imagePosition: "center 38%",
+      link: "https://youtu.be/rz1B4B2yBZY?si=KX47yq_KBNDI5wGy",
+      linkLabel: "WATCH TRAILER",
+      linkTarget: "_blank"
     }
   ];
 
