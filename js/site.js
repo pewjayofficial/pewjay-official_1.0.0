@@ -207,7 +207,8 @@
       image: "assets/home/what's-new/jisoo-sun-showers.jpg",
       imagePosition: "center 38%",
       link: "https://jisoo.lnk.to/SunShowers",
-      linkLabel: "LISTEN NOW"
+      linkLabel: "LISTEN NOW",
+      linkTarget: "_blank"
     },
     {
       subheading: "LOVE OR ANGER?",
@@ -216,7 +217,8 @@
       image: "assets/home/what's-new/angry-birds.jpg",
       imagePosition: "center 48%",
       link: "https://youtu.be/Jy2MuNRb_9w?si=-rWrmFe2QiZwmtuz",
-      linkLabel: "WATCH IT"
+      linkLabel: "WATCH IT",
+      linkTarget: "_blank"
     },
     {
       subheading: "GRAND THEFT AUTO VI",
@@ -225,8 +227,8 @@
       image: "assets/home/what's-new/grand-theft-auto-vi.jpg",
       imagePosition: "center 38%",
       link: "https://youtu.be/rz1B4B2yBZY?si=KX47yq_KBNDI5wGy",
-      linkLabel: "WATCH TRAILER"
-      
+      linkLabel: "WATCH TRAILER",
+      linkTarget: "_blank"
     }
   ];
 
