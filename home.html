@@ -72,29 +72,19 @@
       </section>
 
       <section class="story-panel content-panel" data-story-panel aria-label="PewJay content" aria-hidden="true">
-        <div class="content-heading"><p class="eyebrow">WHAT WE CREATE</p><h2>One world.<br><span>Many ways to play.</span></h2></div>
-        <div class="content-showcase">
-          <div class="content-tabs" role="tablist" aria-label="Explore PewJay content">
-            <button class="content-tab is-selected" id="tab-digital-art" type="button" role="tab" aria-controls="contentPanel" aria-selected="true" data-content-tab="digital-art"><span>01</span> Digital art</button>
-            <button class="content-tab" id="tab-sketching" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="sketching"><span>02</span> Sketching</button>
-            <button class="content-tab" id="tab-animation" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="animation"><span>03</span> Animation</button>
-            <button class="content-tab" id="tab-livestream" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="livestream"><span>04</span> Livestream</button>
-            <button class="content-tab" id="tab-world-tour" type="button" role="tab" aria-controls="contentPanel" aria-selected="false" data-content-tab="world-tour"><span>05</span> World tour</button>
+        <div class="content-heading"><p class="eyebrow">A CREATIVE PLAYGROUND</p><h2>One world.<br><span>Many ways to play.</span></h2></div>
+        <div class="content-carousel" data-content-carousel role="region" aria-roledescription="carousel" aria-label="PewJay creative categories">
+          <div class="content-carousel__stage" data-content-stage>
+            <div class="content-carousel__track" data-content-track></div>
+            <button class="content-carousel__arrow content-carousel__arrow--previous" type="button" data-content-category-step="-1" aria-label="Previous category"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="content-carousel__arrow content-carousel__arrow--next" type="button" data-content-category-step="1" aria-label="Next category"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           </div>
-          <div class="content-description" id="contentPanel" role="tabpanel" aria-labelledby="tab-digital-art" aria-live="polite" tabindex="0">
-            <p class="content-description__label" data-content-label>THE ARTWORK</p>
-            <h3 data-content-title>Digital art</h3>
-            <p data-content-copy>Digital Art is where creativity and imagination come to life through colorful illustrations and fan-inspired artwork. Created using ibisPaint, each piece reflects passion, originality, and artistic expression. Explore PewJay's digital creations inspired by favorite movies, characters, and creative journeys.</p>
-            <a class="button button--outline" data-content-link href="posters.html">More timelapse <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-          </div>
-          <div class="content-visual" data-content-visual>
-            <img src="assets/home/digital-art/1.jpg" alt="Colorful digital character artwork" data-content-image>
-            <div class="content-visual__shade"></div>
-            <div class="content-visual__caption"><span data-content-counter>01 / 15</span><span>PEWJAY CREATIVE ARCHIVE</span></div>
-            <div class="content-visual__controls"><button type="button" aria-label="Previous artwork" data-content-prev><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button><button type="button" aria-label="Next artwork" data-content-next><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+          <div class="content-carousel__footer">
+            <div class="content-carousel__dots" data-content-dots role="group" aria-label="Choose a creative category"></div>
+            <p class="content-carousel__selection" aria-live="polite"><span data-content-category-count>01 / 05</span><strong data-content-category-name>Digital art</strong></p>
           </div>
         </div>
-        <div class="story-hint"><span>SCROLL OR SWIPE TO EXPLORE</span><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
+        <div class="story-hint"><span>SWIPE LEFT/RIGHT OR PICK A CATEGORY</span><i class="fa-solid fa-arrow-down" aria-hidden="true"></i></div>
       </section>
 
       <section class="story-panel owner-panel" data-story-panel aria-label="PewJay creator" aria-hidden="true">

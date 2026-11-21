@@ -2,7 +2,7 @@
   "use strict";
 
   // Set true to take the site offline for maintenance; set false to bring it online.
-  const MAINTENANCE_MODE = true;
+  const MAINTENANCE_MODE = false;
 
   const pages = [
     ["Home", "home.html"],
@@ -1066,104 +1066,215 @@
   }
 
   function setupContentShowcase() {
-    const image = document.querySelector("[data-content-image]");
-    if (!image) return;
-    const visual = document.querySelector("[data-content-visual]");
-    const title = document.querySelector("[data-content-title]");
-    const label = document.querySelector("[data-content-label]");
-    const copy = document.querySelector("[data-content-copy]");
-    const description = document.querySelector(".content-description");
-    const link = document.querySelector("[data-content-link]");
-    const counter = document.querySelector("[data-content-counter]");
-    const tabs = [...document.querySelectorAll("[data-content-tab]")];
-    let category = "digital-art";
-    let imageIndex = 1;
-    let copyTimer;
+    const carousel = document.querySelector("[data-content-carousel]");
+    const stage = carousel?.querySelector("[data-content-stage]");
+    const track = carousel?.querySelector("[data-content-track]");
+    const dots = carousel?.querySelector("[data-content-dots]");
+    if (!carousel || !stage || !track || !dots) return;
+
+    const categories = Object.entries(contentSets);
+    const imageIndices = Object.fromEntries(categories.map(([key]) => [key, 1]));
+    const cards = new Map();
+    let currentIndex = 0;
+    let swipeStart = null;
 
     const imagePath = (set, index) => {
       const extension = set.folder === "digital-art" && index === 14 ? "png" : "jpg";
       return `assets/home/${set.folder}/${index}.${extension}`;
     };
-    const updateCopy = (set) => {
-      if (title) title.textContent = set.title;
-      if (label) label.textContent = set.label;
-      if (copy) copy.textContent = set.copy;
-      if (link) {
-        const hasAction = typeof set.action === "string" && set.action.trim() && typeof set.href === "string" && set.href.trim();
-        link.hidden = !hasAction;
-        if (hasAction) {
-          link.href = set.href;
-          link.innerHTML = `${set.action} <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>`;
-        } else {
-          link.removeAttribute("href");
-          link.replaceChildren();
-        }
-      }
+    const makeIcon = (iconName) => {
+      const icon = document.createElement("i");
+      icon.className = `fa-solid ${iconName}`;
+      icon.setAttribute("aria-hidden", "true");
+      return icon;
     };
-    const render = (animate = true, animateCopy = false) => {
-      const set = contentSets[category];
-      const path = imagePath(set, imageIndex);
-      if (animate) visual.classList.add("is-changing");
-      const next = new Image();
-      next.onload = () => {
-        image.src = path;
-        image.alt = set.alt;
-        if (counter) counter.textContent = `${String(imageIndex).padStart(2, "0")} / ${String(set.total).padStart(2, "0")}`;
-        window.setTimeout(() => visual.classList.remove("is-changing"), 150);
-      };
-      next.onerror = () => visual.classList.remove("is-changing");
-      next.src = path;
-      if (animateCopy && description) {
-        window.clearTimeout(copyTimer);
-        description.classList.remove("is-leaving", "is-entering");
-        void description.offsetWidth;
-        description.classList.add("is-leaving");
-        copyTimer = window.setTimeout(() => {
-          updateCopy(set);
-          description.classList.remove("is-leaving");
-          description.classList.add("is-entering");
-          copyTimer = window.setTimeout(() => description.classList.remove("is-entering"), 520);
-        }, 160);
-      } else {
-        updateCopy(set);
+    const makePhotoButton = (direction, title) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.dataset.contentPhotoStep = String(direction);
+      button.setAttribute("aria-label", `${direction < 0 ? "Previous" : "Next"} ${title.toLowerCase()} image`);
+      button.append(makeIcon(direction < 0 ? "fa-arrow-left" : "fa-arrow-right"));
+      return button;
+    };
+    const makeCard = (key, set, index) => {
+      const card = document.createElement("article");
+      card.className = "content-card";
+      card.dataset.contentCard = key;
+      card.setAttribute("role", "group");
+      card.setAttribute("aria-roledescription", "slide");
+      card.setAttribute("aria-label", `${set.title}, ${index + 1} of ${categories.length}`);
+      card.setAttribute("aria-hidden", "true");
+      card.inert = true;
+
+      const image = document.createElement("img");
+      image.className = "content-card__image";
+      image.src = imagePath(set, 1);
+      image.alt = set.alt;
+      image.dataset.contentCardImage = "";
+      card.append(image);
+
+      const shade = document.createElement("div");
+      shade.className = "content-card__shade";
+      shade.setAttribute("aria-hidden", "true");
+      card.append(shade);
+
+      const copy = document.createElement("div");
+      copy.className = "content-card__copy";
+      const label = document.createElement("p");
+      label.className = "content-card__label";
+      label.textContent = set.label;
+      const titleNode = document.createElement("h3");
+      titleNode.textContent = set.title;
+      const description = document.createElement("p");
+      description.textContent = set.copy;
+      copy.append(label, titleNode, description);
+
+      if (set.action && set.href) {
+        const link = document.createElement("a");
+        link.className = "button button--glass content-card__link";
+        link.href = set.href;
+        link.append(document.createTextNode(set.action), makeIcon("fa-arrow-up-right-from-square"));
+        copy.append(link);
       }
+      card.append(copy);
+
+      const counter = document.createElement("div");
+      counter.className = "content-card__meta";
+      const imageCount = document.createElement("span");
+      imageCount.dataset.contentImageCounter = "";
+      imageCount.textContent = `01 / ${String(set.total).padStart(2, "0")}`;
+      const archive = document.createElement("span");
+      archive.textContent = "PEWJAY CREATIVE ARCHIVE";
+      counter.append(imageCount, archive);
+      card.append(counter);
+
+      const photoControls = document.createElement("div");
+      photoControls.className = "content-card__photo-controls";
+      photoControls.setAttribute("role", "group");
+      photoControls.setAttribute("aria-label", `${set.title} artwork controls`);
+      photoControls.append(makePhotoButton(-1, set.title), makePhotoButton(1, set.title));
+      card.append(photoControls);
+      return card;
     };
 
-    const selectCategory = (key) => {
-      if (!contentSets[key]) return;
-      category = key;
-      imageIndex = 1;
-      tabs.forEach((tab) => {
-        const selected = tab.dataset.contentTab === key;
-        tab.classList.toggle("is-selected", selected);
-        tab.setAttribute("aria-selected", String(selected));
+    categories.forEach(([key, set], index) => {
+      const card = makeCard(key, set, index);
+      cards.set(key, card);
+      track.append(card);
+
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "content-carousel__dot";
+      dot.dataset.contentCategoryIndex = String(index);
+      dot.setAttribute("aria-label", `Show ${set.title} category`);
+      dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+      dots.append(dot);
+
+      card.querySelectorAll("[data-content-photo-step]").forEach((button) => {
+        button.addEventListener("click", () => changeImage(key, Number(button.dataset.contentPhotoStep)));
       });
-      const selectedTab = tabs.find((tab) => tab.dataset.contentTab === key);
-      if (selectedTab) document.querySelector("#contentPanel")?.setAttribute("aria-labelledby", selectedTab.id);
-      render(true, true);
+    });
+
+    const updateCards = () => {
+      const total = categories.length;
+      categories.forEach(([key, set], index) => {
+        const card = cards.get(key);
+        const rawOffset = (index - currentIndex + total) % total;
+        const offset = rawOffset > total / 2 ? rawOffset - total : rawOffset;
+        const distance = Math.abs(offset);
+        const scales = [1, .84, .68];
+        const opacities = [1, .56, .22];
+        const active = index === currentIndex;
+        card.style.setProperty("--card-x", `${offset * 23}%`);
+        card.style.setProperty("--card-scale", String(scales[distance] ?? .62));
+        card.style.setProperty("--card-opacity", String(opacities[distance] ?? .12));
+        card.style.zIndex = String(total - distance);
+        card.classList.toggle("is-active", active);
+        card.setAttribute("aria-hidden", String(!active));
+        card.setAttribute("aria-label", `${set.title}, ${index + 1} of ${total}`);
+        card.inert = !active;
+
+        const dot = dots.querySelector(`[data-content-category-index="${index}"]`);
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-current", String(active));
+        dot.setAttribute("aria-pressed", String(active));
+      });
+      const [key, set] = categories[currentIndex];
+      const categoryCount = carousel.querySelector("[data-content-category-count]");
+      const categoryName = carousel.querySelector("[data-content-category-name]");
+      if (categoryCount) categoryCount.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+      if (categoryName) categoryName.textContent = set.title;
+      carousel.dataset.activeCategory = key;
     };
-    tabs.forEach((tab) => tab.addEventListener("click", () => selectCategory(tab.dataset.contentTab)));
-    tabs.forEach((tab, index) => tab.addEventListener("keydown", (event) => {
-      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+
+    function changeImage(key, direction) {
+      const set = contentSets[key];
+      const card = cards.get(key);
+      if (!set || !card) return;
+      const nextIndex = ((imageIndices[key] - 1 + direction + set.total) % set.total) + 1;
+      imageIndices[key] = nextIndex;
+      const image = card.querySelector("[data-content-card-image]");
+      const counter = card.querySelector("[data-content-image-counter]");
+      const path = imagePath(set, nextIndex);
+      const requestId = Number(card.dataset.imageRequest || 0) + 1;
+      card.dataset.imageRequest = String(requestId);
+      card.classList.add("is-photo-changing");
+      if (counter) counter.textContent = `${String(nextIndex).padStart(2, "0")} / ${String(set.total).padStart(2, "0")}`;
+
+      const preload = new Image();
+      preload.onload = () => {
+        if (Number(card.dataset.imageRequest) !== requestId) return;
+        image.src = path;
+        window.setTimeout(() => card.classList.remove("is-photo-changing"), 120);
+      };
+      preload.onerror = () => {
+        if (Number(card.dataset.imageRequest) === requestId) card.classList.remove("is-photo-changing");
+      };
+      preload.src = path;
+    }
+
+    const selectCategory = (index) => {
+      currentIndex = (index + categories.length) % categories.length;
+      updateCards();
+    };
+    carousel.querySelectorAll("[data-content-category-step]").forEach((button) => {
+      button.addEventListener("click", () => selectCategory(currentIndex + Number(button.dataset.contentCategoryStep)));
+    });
+    dots.addEventListener("click", (event) => {
+      const dot = event.target.closest("[data-content-category-index]");
+      if (dot) selectCategory(Number(dot.dataset.contentCategoryIndex));
+    });
+    carousel.addEventListener("keydown", (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest("a, [data-content-photo-step]")) return;
+      const direction = event.key === "ArrowLeft" ? -1 : event.key === "ArrowRight" ? 1 : 0;
+      if (!direction) return;
       event.preventDefault();
-      const nextIndex = (index + (event.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length;
-      tabs[nextIndex].focus();
-      selectCategory(tabs[nextIndex].dataset.contentTab);
-    }));
-    document.querySelector("[data-content-prev]")?.addEventListener("click", () => {
-      const set = contentSets[category];
-      imageIndex = imageIndex === 1 ? set.total : imageIndex - 1;
-      render();
+      if (event.target.matches("[data-content-category-index]")) {
+        const nextDot = (currentIndex + direction + categories.length) % categories.length;
+        dots.querySelector(`[data-content-category-index="${nextDot}"]`)?.focus();
+      }
+      selectCategory(currentIndex + direction);
     });
-    document.querySelector("[data-content-next]")?.addEventListener("click", () => {
-      const set = contentSets[category];
-      imageIndex = imageIndex === set.total ? 1 : imageIndex + 1;
-      render();
+
+    stage.addEventListener("pointerdown", (event) => {
+      if (!event.isPrimary || event.button !== 0 || event.target.closest("button, a")) return;
+      swipeStart = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      stage.setPointerCapture(event.pointerId);
     });
+    stage.addEventListener("pointerup", (event) => {
+      if (!swipeStart || swipeStart.id !== event.pointerId) return;
+      const deltaX = event.clientX - swipeStart.x;
+      const deltaY = event.clientY - swipeStart.y;
+      swipeStart = null;
+      if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.15) return;
+      selectCategory(currentIndex + (deltaX < 0 ? 1 : -1));
+    });
+    stage.addEventListener("pointercancel", () => { swipeStart = null; });
+
+    updateCards();
     window.setInterval(() => {
-      const set = contentSets[category];
-      imageIndex = imageIndex === set.total ? 1 : imageIndex + 1;
-      render();
+      if (document.hidden || !carousel.closest("[data-story-panel]")?.classList.contains("is-active") || carousel.matches(":hover") || carousel.contains(document.activeElement)) return;
+      changeImage(categories[currentIndex][0], 1);
     }, 6_500);
   }
 
